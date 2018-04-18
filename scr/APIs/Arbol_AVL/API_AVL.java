@@ -7,20 +7,25 @@ package APIs.Arbol_AVL;
 public class API_AVL{
 	/**
 	 * parametros
+	 * @param raiz parametro de la clase
 	 */
 	private Nodo_arbol_AVL raiz;
 	
 	public API_AVL() {
 		raiz=null;
 	}
-	
-	// getter
+	/**
+	 * obtiene la raiz del arbol
+	 * @return devuelve un nodo en este caso la raiz del arbol
+	 * */
 	public Nodo_arbol_AVL obtener_raiz(){
 		return raiz;
 	}
 	/**
-	 * Buscar y Leer un dato en el arbol AVL
-	 *
+	 * Buscar y Leer un dato en el arbol AVL, uso recursivo
+	 *@param dato numero entero a buscar en el arbol
+	 *@param un_nodo1 un nodo en el arbol avl
+	 *@return retorna un nodo 
 	 */
 	public  Nodo_arbol_AVL Buscar_registro_en_AVL(int dato,Nodo_arbol_AVL un_nodo1){
 		if(un_nodo1==null) {
@@ -48,7 +53,8 @@ public class API_AVL{
 	
 	/**
 	 * Obtener factor de equilibrio
-	 *
+	 *@param un_nodo2 un nodo de la clase Nodo_arbol_AVL
+	 *@return retorna un entero para este caso el factor de equilibrio
 	 */
 	public int Obtener_FE(Nodo_arbol_AVL un_nodo2) {
 		if(un_nodo2==null) {
@@ -60,7 +66,8 @@ public class API_AVL{
 	}
 	/**
 	 * Rotar a la derecha
-	 *
+	 *@param un_nodo3 un nodo de la clase Nodo_arbol_AVL
+	 *@return retorna un nodo
 	 */
 	public Nodo_arbol_AVL rotacion_a_derecha(Nodo_arbol_AVL un_nodo3) {
 		Nodo_arbol_AVL auxiliar = un_nodo3.hijoizquierdo;
@@ -75,7 +82,8 @@ public class API_AVL{
 	}
 	/**
 	 * Rotar a la derecha
-	 *
+	 *@param un_nodo4 un nodo de la clase Nodo_arbol_AVL
+	 *@return retorna un nodo
 	 */
 	public Nodo_arbol_AVL rotacion_a_izquierda(Nodo_arbol_AVL un_nodo4) {
 		
@@ -91,7 +99,8 @@ public class API_AVL{
 	}
 	/**
 	 * Rotacion doble izquierda = rotacion izquierda + rotacion derecha
-	 *
+	 *@param un_nodo5 un nodo de la clase Nodo_arbol_AVL
+	 *@return retorna un nodo
 	 */
 	public Nodo_arbol_AVL rotacion_doble_izquierda(Nodo_arbol_AVL un_nodo5) {
 		Nodo_arbol_AVL temporal;
@@ -104,7 +113,8 @@ public class API_AVL{
 	}
 	/**
 	 * Rotacion doble derecha = rotacion derecha + rotacion izquierda
-	 *public Nodo_arbol_AVL rotacion_doble_derecha(Nodo_arbol_AVL un_nodo6) {
+	 *@param un_nodo6 un nodo de la clase Nodo_arbol_AVL
+	 *@return retorna un nodo
 	 */
 	public Nodo_arbol_AVL rotacion_doble_derecha(Nodo_arbol_AVL un_nodo6) {
 		Nodo_arbol_AVL temporal;
@@ -117,7 +127,7 @@ public class API_AVL{
 	}
 	/**
 	 * Actualizar altura
-	 *
+	 *@param sub_arbol un nodo de la clase Nodo_arbol_AVL
 	 */
 	public void actualizar_altura(Nodo_arbol_AVL sub_arbol) {
 		if(	(sub_arbol.hijoizquierdo==null)&&(sub_arbol.hijoderecho!=null)	){
@@ -132,8 +142,10 @@ public class API_AVL{
 		}
 	}
 	/**
-	 * Insertar dato en AVL
-	 *
+	 * Insertar dato en AVL, Uso recursivo
+	 *@param nuevo un nodo de la clase Nodo_arbol_AVL
+	 *@param sub_arbol un nodo de la clase Nodo_arbol_AVL
+	 *@return retorna un nodo
 	 */
 	public Nodo_arbol_AVL insertar_AVL(Nodo_arbol_AVL nuevo,Nodo_arbol_AVL sub_arbol) {
 		//la raiz
@@ -194,10 +206,9 @@ public class API_AVL{
 		actualizar_altura(sub_arbol);
 		return Nuevo_padre;
 	}
-	
 	/**
 	 * insertar
-	 *
+	 *@param dato el entero a insertar
 	 */
 	public void insertar(int dato) {
 		Nodo_arbol_AVL nuevo = new Nodo_arbol_AVL(dato);
@@ -209,6 +220,12 @@ public class API_AVL{
 			raiz=insertar_AVL(nuevo,raiz);
 		}
 	}
+	/**
+	 * Buscar un registro y borrarlo, uso recursivo
+	 *@param dato el entero a buscar
+	 *@param un_nodo12 un nodo de la clase Nodo_arbol_AVL
+	 *@return retorna un nodo
+	 */
 	public  Nodo_arbol_AVL Buscar_registro_en_AVL_y_borrar(int dato,Nodo_arbol_AVL un_nodo12){
 		if(un_nodo12==null) {
 			System.out.println("No se encuentra el dato en el arbol. ");
@@ -279,37 +296,22 @@ public class API_AVL{
 	}
 	/**
 	 * Eliminar registro en arbol AVL
-	 *
+	 *@param dato el entero a eliminar
+	 *@param arbol_avl1 un arbol AVL
+	 *@return retorna un arbol avl
 	 */
 		public API_AVL Eliminar_registro_en_AVL(int dato,API_AVL arbol_avl1 ) {
 			API_AVL arbol_avl_nuevo = new API_AVL();
 			
 			Nodo_arbol_AVL nodo_raiz = arbol_avl1.raiz;
 			nodo_raiz = Buscar_registro_en_AVL_y_borrar(dato,nodo_raiz);//un_nodo12
-			
-
-//			int iteracion=0;
-//			nodo_raiz=actualizar_todo(iteracion,nodo_raiz);
 			arbol_avl_nuevo.raiz=nodo_raiz;
 
 			return arbol_avl_nuevo;
 		}	
 	/**
-	 * Actualizar altura de todos los nodos
-	 *
-	 */
-	public Nodo_arbol_AVL actualizar_todo(int iteracion, Nodo_arbol_AVL un_nodo11) {
-		if(un_nodo11!=null) {
-			iteracion++;
-			actualizar_altura(un_nodo11);
-			un_nodo11=actualizar_todo(iteracion,un_nodo11.hijoizquierdo);
-			un_nodo11=actualizar_todo(iteracion,un_nodo11.hijoderecho);
-		}
-		return un_nodo11;
-	}
-	/**
 	 * Recorrer arbol en preorden
-	 *
+	 *@param un_nodo8 un nodo de la clase Nodo_arbol_AVL
 	 */
 	public void Preorden(Nodo_arbol_AVL un_nodo8) {
 		if(un_nodo8!=null) {
@@ -320,7 +322,7 @@ public class API_AVL{
 	}
 	/**
 	 * Recorrer arbol Inorden
-	 *
+	 *@param un_nodo7 un nodo de la clase Nodo_arbol_AVL
 	 */
 	public void Inorden(Nodo_arbol_AVL un_nodo7) {
 		if(un_nodo7!=null) {
@@ -331,7 +333,7 @@ public class API_AVL{
 	}
 	/**
 	 * Recorrer arbol en postorden
-	 *
+	 *@param un_nodo9 un nodo de la clase Nodo_arbol_AVL
 	 */
 	public void Postorden(Nodo_arbol_AVL un_nodo9) {
 		if(un_nodo9!=null) {
