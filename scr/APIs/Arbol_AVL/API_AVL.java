@@ -23,6 +23,7 @@ public class API_AVL{
 	 *
 	 */
 	public  Nodo_arbol_AVL Buscar_registro_en_AVL(int dato,Nodo_arbol_AVL un_nodo1){
+		if(un_nodo1==null) {
 			System.out.println("No se encuentra el dato en el arbol. ");
 			return null;
 		}
