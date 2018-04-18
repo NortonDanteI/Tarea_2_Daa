@@ -160,7 +160,6 @@ public class API_AVL{
 			}
 			else {
 				sub_arbol.hijoizquierdo=insertar_AVL(nuevo,sub_arbol.hijoizquierdo);
-				System.out.println("FE del subarbol izquierdo "+Obtener_FE(sub_arbol.hijoizquierdo)+"|"+"FE del subarbol derecho "+Obtener_FE(sub_arbol.hijoderecho));
 				if((Obtener_FE(sub_arbol.hijoizquierdo) - Obtener_FE(sub_arbol.hijoderecho)==2)) {
 					if(nuevo.Valor<sub_arbol.hijoizquierdo.Valor) {
 						System.out.println("Esta muy cargado a la izquierda rotamos a la derecha para balancear el arbol AVL. ");
@@ -183,8 +182,6 @@ public class API_AVL{
 				}
 				else {
 					sub_arbol.hijoderecho = insertar_AVL(nuevo,sub_arbol.hijoderecho);
-					System.out.println("FE del subarbol derecho "+Obtener_FE(sub_arbol.hijoderecho)+"|"+"FE del subarbol izquierdo "+Obtener_FE(sub_arbol.hijoizquierdo));
-					System.out.println(Obtener_FE(sub_arbol.hijoderecho)+"|"+ Obtener_FE(sub_arbol.hijoizquierdo));
 					if((Obtener_FE(sub_arbol.hijoderecho) - Obtener_FE(sub_arbol.hijoizquierdo)==2)) {
 						if(nuevo.Valor>sub_arbol.hijoderecho.Valor) {
 							System.out.println("Esta muy cargado a la derecha rotamos a la izquierda para balancear el arbol ");
