@@ -67,15 +67,16 @@ public class arbolBusquedaBinaria {
 	 */
 	public arbolBusquedaBinaria busqueda(int numero) {
 		arbolBusquedaBinaria arbol = null;
+		System.out.println(""+ !estaVacio());
 		if(!estaVacio()) {
 			if(raiz.getNumero() == numero) {
-				return this;
+				return arbol;
 			}else {
 				if(raiz.getNumero() < numero) {
-					arbol = raiz.hi.busqueda(numero);
+					return (arbol = raiz.hi.busqueda(numero));
 				}else {
 					if(raiz.getNumero() > numero) {
-						arbol = raiz.hd.busqueda(numero);
+						return(arbol = raiz.hd.busqueda(numero));
 					}
 				}
 			}
@@ -93,18 +94,22 @@ public class arbolBusquedaBinaria {
 	 */
 	public boolean existeDato(int numero) {
 		if(!estaVacio()) {
+			
 			if(raiz.getNumero()==numero) {
+	
 				return true;
 			}else {
-				if(raiz.getNumero() > numero) {
-					raiz.hi.existeDato(numero);
+				if(numero < raiz.getNumero()) {
+					return(raiz.hi.existeDato(numero));
 				}else {
-					raiz.hd.existeDato(numero);
+					if(numero > raiz.getNumero()) {
+					return(raiz.hd.existeDato(numero));
+					}
 					
 				}
 			}
 		}
-		return false;
+		return (false);
 	}
 
 	/**
@@ -172,23 +177,45 @@ public class arbolBusquedaBinaria {
 	 * si uno o ambos hijos estan vacios se pregunta cual esta vacio y el que lo este pasa a ser el padre
 	 * @param numero
 	 */
-	public void eliminarDato(int numero) {
-		arbolBusquedaBinaria eliminar = busqueda(numero);
-		if(!eliminar.estaVacio()) {
-			if(eliminar.esHoja()) {
-				eliminar.raiz=null;
-			}else {
-				if(!eliminar.raiz.hi.estaVacio() && !eliminar.raiz.hd.estaVacio() ) {
-					eliminar.raiz.setNumero(eliminar.raiz.hd.min());
-				}else {
-					if(eliminar.raiz.hi.estaVacio()) {
-						eliminar.raiz = eliminar.raiz.hd.raiz;
-					}else {
-						eliminar.raiz = eliminar.raiz.hi.raiz;
-					}
+	public arbolBusquedaBinaria eliminarDato(int numero) {
+		
+		//caso 1 hijo 
+		if(raiz.hi==null && raiz.hd!=null) {
+			System.out.println("Se encontro el dato en el arbol avl tiene 1 hijo izquierdo ");
+			System.out.println("Dato borrado");
+			arbolBusquedaBinaria auxiliar = raiz.hi;
+			raiz=null;
+			return(auxiliar);
+		}
+		else {
+			//caso 1 hijo
+			if(raiz.hd!=null && raiz.hi==null) {
+				System.out.println("Se encontro el dato en el arbol avl tiene 1 hijo derecho ");
+				System.out.println("Dato borrado");
+				arbolBusquedaBinaria auxiliar = raiz.hd;
+				raiz=null;
+				return(auxiliar);
+			}
+			else {
+				//caso 2 hijos
+				System.out.println("Se encontro el dato en el arbol avl tiene 2 hijos ");
+				System.out.println("Dato borrado");
+				arbolBusquedaBinaria auxiliar = raiz.hd;
+				if(auxiliar.raiz.hi !=null) {
+					auxiliar = auxiliar.raiz.hi;
+					auxiliar.raiz.hd=raiz.hd;
+					auxiliar.raiz.hi=raiz.hi;
+					raiz=null;
+					return(auxiliar);
+				}
+				else {
+					auxiliar.raiz.hi=raiz.hi;
+					raiz=null;
+					return(auxiliar);
 				}
 			}
 		}
+		
 	}
 
 	/**

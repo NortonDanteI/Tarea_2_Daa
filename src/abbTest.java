@@ -24,10 +24,12 @@ class abbTest {
 		arbol.posOrdenAbb();
 		System.out.println("");
 		//verifico si los valores maximos corresponden a los ingresados
+		assertEquals(true,arbol.existeDato(28));
 		assertEquals(2,arbol.min());
 		assertEquals(55,arbol.max());
 		//verifico si la altura es la correcta
 		assertEquals(4,arbol.alturaDelAbb());
+		arbol.eliminarDato(28).posOrdenAbb();;
 	}
 
 }
